@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Simple guestbook</title>
+  </head>
+  <body>
+    <h1>Guestbook</h1>
+
+    <form action="/add_message" method="post">
+      <label for="message">Leave your message: </label>
+      <input type="text" name="message"><br>
+      <input type="submit" value="Send" />
+    </form>
+
+    <h2>Messages</h2>
+    <% if messages.empty? %>
+      <p>No message yet.</p>
+    <% else %>
+      <ul>
+      <% messages.each do |message| %>
+        <li><%= message['message'] %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
+  </body>
+</html>

@@ -1,0 +1,16 @@
+[Unit]
+Description=MongoDB database
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill mongodb
+ExecStartPre=-/usr/bin/docker rm mongodb
+ExecStartPre=/usr/bin/docker pull dockerfile/mongodb
+ExecStart=/usr/bin/docker run -rm --name mongodb -p 27017:27017 dockerfile/mongodb
+ExecStop=/usr/bin/docker stop mongodb
+
+[X-Fleet]
+MachineMetadata=size=big
+Conflicts=mongodb.*.service

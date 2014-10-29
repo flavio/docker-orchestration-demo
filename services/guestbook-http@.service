@@ -1,0 +1,17 @@
+[Unit]
+Description=My guestbook app
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/etcdctl.conf
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill guestbook-%i
+ExecStartPre=-/usr/bin/docker rm guestbook-%i
+ExecStartPre=/usr/bin/docker pull flavio/guestbook
+ExecStart=/bin/sh -c '/usr/bin/docker run --rm --dns=192.168.1.2 --name guestbook-%i -p 80:4567 -e ETCDCTL_PEERS=$ETCDCTL_PEERS flavio/guestbook ruby app.rb'
+ExecStop=/usr/bin/docker stop guestbook-%i
+
+[X-Fleet]
+Conflicts=guestbook-http@*.service
+MachineMetadata=size=small

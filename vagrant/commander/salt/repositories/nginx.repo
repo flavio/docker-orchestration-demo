@@ -1,0 +1,7 @@
+[nginx]
+name=nginx
+enabled=1
+autorefresh=1
+baseurl=http://download.opensuse.org/repositories/home:/microchip8/openSUSE_13.2/
+type=rpm-md
+gpgcheck=0

@@ -1,0 +1,16 @@
+127.0.0.1 localhost
+
+{% if salt['grains.get']('localhost', '') == 'commander' %}
+192.168.1.2 commander commander.test.lab
+{% endif %}
+
+# special IPv6 addresses
+::1             localhost ipv6-localhost ipv6-loopback
+
+fe00::0         ipv6-localnet
+
+ff00::0         ipv6-mcastprefix
+ff02::1         ipv6-allnodes
+ff02::2         ipv6-allrouters
+ff02::3         ipv6-allhosts
+

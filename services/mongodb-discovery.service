@@ -1,0 +1,11 @@
+[Unit]
+Description=Announce MongoDB
+BindsTo=mongodb.service
+
+[Service]
+EnvironmentFile=/etc/etcdctl.conf
+ExecStart=/bin/sh -c "while true; do /usr/bin/etcdctl set /services/mongodb '{ \"host\": \"%H\", \"port\": 27017 }' --ttl 60;sleep 45;done"
+ExecStop=/bin/sh -c "/usr/bin/etcdctl rm /services/mongodb"
+
+[X-Fleet]
+MachineOf=mongodb.service
