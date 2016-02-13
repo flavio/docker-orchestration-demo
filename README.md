@@ -26,7 +26,7 @@ The demo environment is managed by [Vagrant](https://www.vagrantup.com/) using
 [VirtualBox](https://www.virtualbox.org/) as hypervisor.
 
 The provisioning of the demo environment is done using
-[SlatStack](http://www.saltstack.com/).
+[SaltStack](http://www.saltstack.com/).
 
 The Docker images are orchestrated using [fleet](https://github.com/coreos/fleet)
 and [etcd](https://github.com/coreos/etcd).
